@@ -1,0 +1,6 @@
+// binaries & object files
+*.o
+*.exe
+// swap files made by linux
+*.swp
+*.swo
