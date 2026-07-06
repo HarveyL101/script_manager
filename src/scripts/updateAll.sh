@@ -1,4 +1,4 @@
-!#bash
+!#bin/bash
 : '
  Name: UpdateAll script
  Purpose: A script for quick installation or updating of applications frequently used for development.
@@ -10,21 +10,22 @@ updateAll() {
 			"gcc" # Tooling
 			"git" 
 			"cmake" 
-			"putty" 
+			"make"
+			"gdb"
+			"putty"	
 		       )
 	
 	echo "UpdateAll() called, updating dev softwares..."
 	
-	for i in "${arr[@]}"
-	do
-		if [ command -v "${arr[$i]}" ]
+	for pkg in "${arr[@]}"; do
+		if [ command -v "$pkg" >/dev/null 2>&1; ]
 			echo "${arr[$i]} found, updating to the latest version now..."
-			sudo apt upgrade ${arr[$i]}
+			sudo apt update --only-upgrade "$pkg"
 		else
 			echo "${arr[$i]} is not installed, installing now..."
-			sudo apt install ${arr[$i]}
+			sudo apt install -y "$pkg"
 		fi
 	done
-
+	
 	echo "UpdateAll() concluded."
 }
