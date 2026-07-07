@@ -1,11 +1,13 @@
-CFLAGS="-Wall -Wextra -pedantic"
+CFLAGS= -Wall -Wextra -pedantic
 
 CC="gcc"
 
+SRC="src/script_manager.c"
+
 TARGET="build/script_manager.exe"
 
-make: script_manager.c
-	$(CC) $(CFLAGS) -o $(TARGET)
+make:
+	$(CC) $(SRC) $(CFLAGS) -o $(TARGET)
 
 clean:
 	rm -f $(TARGET) 
