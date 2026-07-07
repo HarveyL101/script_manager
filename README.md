@@ -11,8 +11,9 @@ A simple script manager aimed at automating some simpler processes made during s
 Below are the currently written scripts and their intentions within this small project.
 
 ### UpdateAll.sh
+
 A script responsible for the upgrading/ installation of frequently used dev softwares, these are centered around C/Embedded projects
-and contain calls for the Text Editor (Vim), Toolchain (git, gdb, make) and Compilers (gcc, g++, clang)
+and contain calls for the Text Editor (*Vim*), Toolchain (*git*, *gdb*, *make*) and Compilers (*gcc*, *g++*, *clang*)
 
 This also attempts to detect the package manager used by the system, but has a fallback option of taking in user input if it fails.
 
