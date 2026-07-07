@@ -15,15 +15,18 @@ updateAll() {
 			"putty"	
 		       )
 	
-	echo "UpdateAll() called, updating dev softwares..."
+	package_manager="USER INPUT"
+	read -p "Enter your package manager command (E.g apt, dnf, ...)" "$package_manager"
+
+	echo "Updating dev softwares..."
 	
 	for pkg in "${arr[@]}"; do
 		if [ command -v "$pkg" >/dev/null 2>&1; ]
 			echo "${arr[$i]} found, updating to the latest version now..."
-			sudo apt update --only-upgrade "$pkg"
+			sudo "$package_manager" update --only-upgrade "$pkg"
 		else
 			echo "${arr[$i]} is not installed, installing now..."
-			sudo apt install -y "$pkg"
+			sudo "$package_manager" install -y "$pkg"
 		fi
 	done
 	
