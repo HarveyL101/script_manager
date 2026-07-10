@@ -5,6 +5,12 @@
  Author: Harvey Lopez
 '
 
+# Colour declarations
+NC='\033[0m' # No Colour
+BLUE='\033[0;34m'
+LIGHTBLUE='\033[1;34m'
+GREEN='\033[0;32m'
+
 function updateAll() {
 	readonly packages=(vim 
 		gcc
@@ -41,21 +47,21 @@ function updateAll() {
 				;;
 		esac
 	else
-		echo "Package manager detected as $package_manager"
+		echo -e "Package manager detected as ${GREEN}$package_manager${NC}"
 		echo "Updating development tools..."
 	fi
 
 	for pkg in "${packages[@]}"; do
 		if command -v "$pkg" >/dev/null 2>&1; then
-			echo "$pkg found, updating to the latest version now..."
+			echo -e "${GREEN}$pkg${NC} found, updating to the latest version now..."
 			sudo "$package_manager" update --only-upgrade "$pkg"
 		else
-			echo "$pkg is not installed, installing now..."
+			echo -e "${GREEN}$pkg${NC} is not installed, installing now..."
 			sudo "$package_manager" install -y "$pkg"
 		fi
 	done
 	
-	echo "UpdateAll() concluded."
+	echo -e "\n${LIGHTBLUE}UpdateAll()${NC} concluded."
 }
 
 updateAll

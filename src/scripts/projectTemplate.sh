@@ -4,6 +4,12 @@
 # Purpose: Creates a new project directory with name given by the user, containing standard files like .gitignore, Makefiles and best practice directory structure to start projects properly.
 # Author: Harvey Lopez
 
+# Colour declarations
+NC='\033[0m' # No Colour
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+
 path='.'
 
 # Enables the use of options/ flags when calling the script. Enabling ./projectTemplate.sh -p <project_directory> <project_name>
@@ -13,7 +19,7 @@ while getopts "p:" opt; do
 			path="$OPTARG"
 			;;
 		*)
-			echo "Usage: $0 [-p path] project_name"
+			echo -e "Usage: $0 ${GREEN}[-p path] <project_name>${NC}"
 			exit 1
 			;;
 	esac
@@ -25,7 +31,7 @@ shift $((OPTIND - 1))
 project="$1"
 
 if [ -z "$project" ]; then
-	echo "Usage: $0 [-p path] project_name"
+	echo -e "Usage: $0 ${GREEN}[-p path] <project_name>${NC}"
 	exit 1
 fi
 
@@ -90,12 +96,12 @@ EOF
 
 # Confirmation of directory creation
 if command ls "$TARGET_DIR" >/dev/null 2>&1; then
-	echo "Creation success @ $TARGET_DIR:"
+	echo -e "${GREEN}Creation success${NC} @ ${BLUE}$TARGET_DIR${NC}:"
 	if command -v tree >/dev/null 2>&1; then
 		tree "$TARGET_DIR"
 	else 
-		echo "Cannot show result, 'tree' is not installed"
+		echo -e "Cannot show result, '${GREEN}tree${NC}' is not installed"
 	fi
 else 
-	echo "Creation failed, please check inputs and try again."
+	echo -e "${RED}Creation failed${NC}, please check inputs and try again."
 fi
