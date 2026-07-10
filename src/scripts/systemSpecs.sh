@@ -1,8 +1,8 @@
-: '
-	Name: System Specifications
-	Purpose: Scans hardware info stored in linux directories to display the devices specs. 
-	Author: Harvey Lopez
-'
+#!/bin/bash
+
+# Name: System Specifications
+# Purpose: Scans hardware info stored in linux directories to display the devices specs. 
+# Author: Harvey Lopez
 
 # CPU specs pulled from CPU_info_path
 CPU_info_path="/proc/cpuinfo"
@@ -20,20 +20,20 @@ echo "Development Machine Specs"
 echo "========================="
 
 # CPU Specs
-echo "CPU Specs"
+echo -e  "\nCPU Specs\n"
 echo -e "\tModel: $CPU_model"
 echo -e "\tProcessor Count: $CPU_processor_count"
 echo -e "\tCache Size: $CPU_cache_size"
 
 # Memory Specs
-echo "Storage Specs"
+echo -e "\nStorage Specs\n"
 echo -e "\tTotal Storage Space: $Storage_mem_total"
 echo -e "\tFree Storage Space: $Storage_mem_free"
 
 # Compiler versions (gcc, g++ clang, MSVC)
 compilers=("gcc" "g++" "clang" "msvc")
 
-echo "Compiler Version Checks"
+echo -e "\nCompiler Version Checks\n"
 
 for compiler in "${compilers[@]}"; do
 	if command -v "$compiler" >/dev/null 2>&1; then
@@ -46,7 +46,7 @@ done
 # Toolchain versions (CMake, Make, Git, GDB)
 tools=("cmake" "make" "git" "gdb")
 
-echo "Toolchain Version Checks"
+echo -e "\nToolchain Version Checks\n"
 
 for tool in "${tools[@]}"; do
 	if command -v "$tool" >/dev/null 2>&1; then

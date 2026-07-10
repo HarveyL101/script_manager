@@ -1,38 +1,39 @@
-!#bin/bash
+#!/bin/bash
 : '
  Name: UpdateAll script
  Purpose: A script for quick installation or updating of applications frequently used for development.
  Author: Harvey Lopez
 '
 
-updateAll() {
-	declare -a arr=("vim" # IDE/ Text Editors
-			"gcc" # Tooling
-			"git" 
-			"cmake" 
-			"make"
-			"gdb"
-			"putty"	
-		       )
+function updateAll() {
+	readonly packages=(vim 
+		gcc
+		git
+		cmake 
+		make
+		gdb
+		putty	
+	)
 	
-	// Currently checks for apt, dnf and yum
-	package_manager="USER INPUT"
-	if [ command -v apt >/dev/null 2>&1 ]; then
+	# Currently checks for apt, dnf and yum
+	package_manager=""
+
+	if command -v apt >/dev/null 2>&1; then
 		package_manager="apt"
-	else if [ command -v dnf >/dev/null 2>&1]; then
+	elif command -v dnf >/dev/null 2>&1; then
 		package_manager="dnf"
-	else if [ command -v yum >/dev/null 2>&1]; then
+	elif command -v yum >/dev/null 2>&1; then
 		package_manager="yum"
 	else 
 		package_manager="missing"
 	fi
 
-	if [ "$package_manager"=="missing" ]; then
+	if [ "$package_manager" == "missing" ]; then
 		res=''
-		read -p "Package manager not found, would you like to enter the name of your package manager? [y/n] (E.g. apt, dnf, yum)" "$res"
+		read -rp "Package manager not found, would you like to enter the name of your package manager? [y/n] (E.g. apt, dnf, yum)" res
 		case "$res" in
 			[yY][eE][sS]|[yY])
-				read -p "Enter the name of your package manager in lowercase" "$package_manager"
+				read -rp "Enter your package manager (apt, dnf, yum):" package_manager
 				;;
 			*)
 				echo "package manager declined, exiting the program now."
@@ -40,18 +41,21 @@ updateAll() {
 				;;
 		esac
 	else
-		echo "Updating dev softwares..."
+		echo "Package manager detected as $package_manager"
+		echo "Updating development tools..."
 	fi
 
-	for pkg in "${arr[@]}"; do
-		if [ command -v "$pkg" >/dev/null 2>&1 ]; then
-			echo "${arr[$i]} found, updating to the latest version now..."
+	for pkg in "${packages[@]}"; do
+		if command -v "$pkg" >/dev/null 2>&1; then
+			echo "$pkg found, updating to the latest version now..."
 			sudo "$package_manager" update --only-upgrade "$pkg"
 		else
-			echo "${arr[$i]} is not installed, installing now..."
+			echo "$pkg is not installed, installing now..."
 			sudo "$package_manager" install -y "$pkg"
 		fi
 	done
 	
 	echo "UpdateAll() concluded."
 }
+
+updateAll
