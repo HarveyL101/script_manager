@@ -11,3 +11,8 @@ make:
 
 clean:
 	rm -f $(TARGET) 
+
+run:
+	make clean && make && ./$(TARGET)
+
+
