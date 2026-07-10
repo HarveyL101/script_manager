@@ -101,8 +101,6 @@ int main(void)
 				break;
 			case 'x':
 				return 0;
-			default:
-				printf("Invalid response (%c), please try again\n", response);
 		}
 	}
 	
