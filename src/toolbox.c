@@ -68,7 +68,7 @@ int main(void)
 				// Flushes stdin to avoid old '\n' from scanf's slipping into later fgets() calls
 				while ((c = getchar()) != '\n' && c != EOF) {} 
 
-				printf("\nprojectTemplate follows the formula:\n\t./projectTemplate.sh -p <project_directory> <project_name>\n");
+				printf("\nProjectTemplate follows the formula:\n\t./projectTemplate.sh -p <project_directory> <project_name>\n");
 				printf("E.g.\n\t./projectTemplate.sh -p ~/foo/bar helloWorld\ncreates the directory\n\t~/foo/bar/helloWorld");
 				
 				printf("\n\nEnter <project_directory>: ");
