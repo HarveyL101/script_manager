@@ -59,11 +59,11 @@ Displays key information about the current device's hardware, pulling primarily 
 5. Enjoy!
 
 > `make run` as a command evaluates to:
-```
-rm -f build/toolbox.exe &&
-gcc src/toolbox.c -Wall -Wextra -pedantic -o build/toolbox.exe &&
-./build/toolbox.exe
-```
+> ```
+> rm -f build/toolbox.exe &&
+> gcc src/toolbox.c -Wall -Wextra -pedantic -o build/toolbox.exe &&
+> ./build/toolbox.exe
+> ```
 
 > [!IMPORTANT]
 > This project and its documentation are subject to change, and is intended to be a Work In Progress style of project that improves with my experience in bash, C and linux-based systems.
