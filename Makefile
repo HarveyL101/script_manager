@@ -2,9 +2,9 @@ CFLAGS= -Wall -Wextra -pedantic
 
 CC="gcc"
 
-SRC="src/script_manager.c"
+SRC="src/toolbox.c"
 
-TARGET="build/script_manager.exe"
+TARGET="build/toolbox.exe"
 
 make:
 	$(CC) $(SRC) $(CFLAGS) -o $(TARGET)

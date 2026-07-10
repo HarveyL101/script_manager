@@ -1,7 +1,7 @@
 # Simple Script Manager
 
 **Description:**
-A simple script manager aimed at automating some simpler processes made during setup/ development. All scripts are intended to be run from the `script_manager.c` file which serves as the entry-point to the program.
+A simple script manager aimed at automating some simpler processes made during setup/ development. All scripts are intended to be run from the `toolbox.c` file which serves as the entry-point to the program.
 
 > [!NOTE]
 > This project and the subsequent scripts are focused purely on linux based systems, and makes no attempt to function on Windows systems. Therefore it would be advisable to not be used on Windows.
@@ -40,6 +40,10 @@ The resulting directory contains:
 
 The files all contain a starting template relevant to their function, with only `/include` and `/build` being initially empty.
 
+The method for using this script follows the formula:
+
+`./<relative_script_path>/projectTemplate.sh -p <project_path> <project_name>`
+
 ### SystemSpecs.sh
 
 Displays key information about the current device's hardware, pulling primarily from the linux filesystem's `/proc` directory. Currently displays information about the CPU and Storage, with information about connected devices, drives, ports and other aspects still being investigated.
@@ -47,12 +51,19 @@ Displays key information about the current device's hardware, pulling primarily 
 ## Installation & Setup
 
 1. Navigate to the desired directory using `cd <path>`
-2. Clone the repo using `git clone "https://Github.com/HarveyL101/script_manager"`
+2. Clone the repo using `git clone "https://Github.com/HarveyL101/toolbox"`
 3. Compile the project using `make` in the root of the repo directory.
-4. Either assign the resulting `script_manager.exe` within `/build` to a macro or easily accessible place.
-    1. Assign `script_manager.exe` to a macro or easily accessible file location (E.g. Desktop).
-    2. Run the program from the repo's directory using `./script_manager/build/script_manager.exe`
+4. Either assign the resulting `toolbox.exe` within `/build` to a macro or easily accessible place.
+    1. Assign `toolbox.exe` to a macro or easily accessible file location (E.g. Desktop).
+    2. Run the program from the repo's directory using `make run`
 5. Enjoy!
+
+> `make run` as a command evaluates to:
+```
+rm -f build/toolbox.exe &&
+gcc src/toolbox.c -Wall -Wextra -pedantic -o build/toolbox.exe &&
+./build/toolbox.exe
+```
 
 > [!IMPORTANT]
 > This project and its documentation are subject to change, and is intended to be a Work In Progress style of project that improves with my experience in bash, C and linux-based systems.
