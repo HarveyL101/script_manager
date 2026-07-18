@@ -7,7 +7,6 @@
 
 # Colour declarations
 NC='\033[0m' # No Colour
-BLUE='\033[0;34m'
 LIGHTBLUE='\033[1;34m'
 GREEN='\033[0;32m'
 
@@ -60,6 +59,28 @@ function updateAll() {
 			sudo "$package_manager" install -y "$pkg"
 		fi
 	done
+
+	echo -e "Packages updated...\n"
+
+	res=''
+	read -rp "Optional systems update to device software? [y/n]: " res
+	case "$res" in
+		[yY][eE][sS]|[yY])
+			echo "Updating..."
+			if [ "$package_manager" == "apt" ]; then
+				sudo "$package_manager" update 
+				sudo "$package_manager" upgrade
+			elif [ "$package_manager" == "dnf" ] || [ "$package_manager" == "yum" ]; then
+				sudo "$package_manager" upgrade
+			else
+				echo "Package manager incompatible with this program's setup."
+			fi
+
+			;;
+		*)
+			echo "Package manager incompatible with this program's setup."
+			;;
+	esac
 	
 	echo -e "\n${LIGHTBLUE}UpdateAll()${NC} concluded."
 }
